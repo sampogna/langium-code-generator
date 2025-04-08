@@ -34,6 +34,7 @@ Before using the Langium Generator, make sure you have the following:
 ## Usage
 
 ### Input Format
+Definir sintaxe depois
 
 The Langium Generator expects an input file in a custom syntax format to describe the classes. Below is an example:
 
