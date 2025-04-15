@@ -1,52 +1,76 @@
 # Langium Generator
 
-Langium Generator is a powerful tool that takes a custom syntax for defining classes and generates a fully functional CRUD application with HTML, CSS, JavaScript, and integration with Supabase. This generator automates the creation of a web-based CRUD interface based on your class definitions and integrates with Supabase for backend storage and user authentication.
+O **Langium Generator** é uma ferramenta poderosa que utiliza uma sintaxe personalizada para definir classes e gerar uma aplicação CRUD totalmente funcional com HTML, CSS, JavaScript e integração com o Supabase. Ele automatiza a criação de uma interface web baseada nas definições de classes fornecidas e realiza a integração com o Supabase para armazenamento no backend e autenticação de usuários.
 
-## Features
+## Funcionalidades
 
-- **Custom Syntax Input**: Define your classes using a simple, custom syntax.
-- **CRUD Generation**: Automatically generate a full CRUD (Create, Read, Update, Delete) application.
-- **Frontend**: HTML, CSS, and JavaScript files for a functional web application.
-- **Supabase Integration**: Automatically integrate with Supabase to handle database operations and user authentication.
-- **Supabase Project URL & JWT Token**: The generator requires a Supabase project URL and a JWT token for secure API calls.
+- **Sintaxe Personalizada**: Defina suas classes usando uma sintaxe simples e intuitiva.
+- **Geração de CRUD**: Cria automaticamente uma aplicação completa com as operações de Criar, Ler, Atualizar e Deletar.
+- **Frontend Completo**: Gera arquivos HTML, CSS e JavaScript prontos para uso.
+- **Integração com Supabase**: Conecta-se automaticamente ao Supabase para gerenciamento do banco de dados e autenticação de usuários.
+- **Parâmetros de Conexão**: Requer a URL do projeto Supabase e um token JWT para chamadas seguras à API.
 
-## Requirements
+## Requisitos
 
-Before using the Langium Generator, make sure you have the following:
+Antes de usar o Langium Generator, certifique-se de ter:
 
-- **Node.js** (v14 or higher)
-- **Supabase Account**: A Supabase project URL and JWT token to connect to your backend.
-- **Langium Syntax Definition**: A custom syntax file that describes the classes you want to create.
+- **Node.js** (versão 14 ou superior)
+- **Conta no Supabase**: Incluindo a URL do projeto e o token JWT.
+- **Arquivo de Definição de Sintaxe**: Um arquivo com a sintaxe personalizada descrevendo as classes que deseja gerar.
 
-## Installation
+## Instalação
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/langium-generator.git
-    cd langium-generator
-    ```
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/yourusername/langium-generator.git
+   cd langium-code-generator/project/crud-generator/
+   ```
 
-2. Install the dependencies:
-    ```bash
-    npm install
-    ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-## Usage
+## Uso
 
-### Input Format
-Definir sintaxe depois
+1. Abra o VSCode na pasta `crud-generator`.
 
-The Langium Generator expects an input file in a custom syntax format to describe the classes. Below is an example:
+2. Gere os arquivos da linguagem:
+   ```bash
+   npm run langium:generate
+   ```
 
-```txt
-class User {
-  name: string;
-  email: string;
-  age: number;
-}
+3. Compile o projeto:
+   ```bash
+   npm run build
+   ```
 
-class Post {
-  title: string;
-  content: string;
-  userId: string;
-}
+4. No VSCode, pressione `F5`. Uma nova janela será aberta. Nela, crie um arquivo `test.crudg` com o seguinte conteúdo:
+   ```txt
+   entity User {
+     name: STRING;
+     age: INT;
+   }
+   ```
+
+5. Volte para a janela original do VSCode (ou utilize o terminal dentro de `crud-generator`) e execute o seguinte comando, lembrando de ajustar o caminho para o arquivo `test.crudg`:
+   ```bash
+   node ./bin/cli generate ~/test.crudg
+   ```
+
+6. Uma nova pasta chamada `generate` será criada (ou sobrescrita) dentro de `crud-generator/`. Nela, deve aparecer um arquivo `test.js` com o seguinte conteúdo:
+   ```javascript
+   "use strict";
+
+   console.log('Hello, User!');
+   ```
+
+---
+
+Esses são os primeiros passos para começar. Os arquivos mais relevantes para o projeto estão localizados em:
+
+- `crud-generator/src/cli/generator.ts`
+- `crud-generator/src/cli/main.ts`
+- `crud-generator/src/language/crud-generator.langium`
+
+**Importante:** sempre que realizar alterações nesses arquivos, repita o processo a partir do passo 2.
