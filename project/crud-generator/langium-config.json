@@ -1,0 +1,15 @@
+{
+    "projectName": "CrudGenerator",
+    "languages": [{
+        "id": "crud-generator",
+        "grammar": "src/language/crud-generator.langium",
+        "fileExtensions": [".crudg"],
+        "textMate": {
+            "out": "syntaxes/crud-generator.tmLanguage.json"
+        },
+        "monarch": {
+            "out": "src/syntaxes/crud-generator.monarch.ts"
+        }
+    }],
+    "out": "src/language/generated"
+}
