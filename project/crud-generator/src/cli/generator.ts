@@ -1,22 +1,29 @@
 import type { Model } from '../language/generated/ast.js';
-import { expandToNode, joinToNode, toString } from 'langium/generate';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 import { extractDestinationAndName } from './cli-util.js';
+import { generatePublic } from './generator/public/generate.js';
+import { generateSchema } from './generator/database/schema.js';
+import generateStyle from './generator/public/style.js';
 
-export function generateJavaScript(model: Model, filePath: string, destination: string | undefined): string {
-    const data = extractDestinationAndName(filePath, destination);
-    const generatedFilePath = `${path.join(data.destination, data.name)}.js`;
+export const dataTypes = {
+  'STRING': 'text',
+  'INT': 'number'
+}
 
-    const fileNode = expandToNode`
-        "use strict";
+export function capitalizeFirstLetter(text: string) {
+  if (!text) return '';
 
-        ${joinToNode(model.entities, entity => `console.log('Hello, ${entity.name}!');`, { appendNewLineIfNotEmpty: true })}
-    `.appendNewLineIfNotEmpty();
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
 
-    if (!fs.existsSync(data.destination)) {
-        fs.mkdirSync(data.destination, { recursive: true });
-    }
-    fs.writeFileSync(generatedFilePath, toString(fileNode));
-    return generatedFilePath;
+export function generatePhp(model: Model, filePath: string, destination: string | undefined): string {
+  const data = extractDestinationAndName(filePath, destination);
+
+  model.entities.map((entity) => {
+    generatePublic(entity.name, entity.fields, data);
+  });
+
+  generateSchema(model, data);
+  generateStyle(data);
+
+  return '';
 }
