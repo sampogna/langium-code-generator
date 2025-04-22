@@ -1,0 +1,14 @@
+{
+  "name": "developer/php",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Laboratório de Pesquisa e Extensão"
+    }
+  ],
+  "require": {}
+}
