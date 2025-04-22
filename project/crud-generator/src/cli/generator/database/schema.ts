@@ -6,7 +6,7 @@ import { FilePathData } from '../../cli-util.js';
 // @ts-ignore
 import pluralize from 'pluralize';
 
-export function generateSchema(model: Model, data: FilePathData): void {
+export default function generateSchema(model: Model, data: FilePathData): void {
   const dest = data.destination + '/database';
   const generatedFilePath = `${path.join(dest, 'schema')}.sql`;
 

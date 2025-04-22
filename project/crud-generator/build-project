@@ -1,0 +1,1 @@
+npm run langium:generate && npm run build && node ./bin/cli generate ~/test.crudg

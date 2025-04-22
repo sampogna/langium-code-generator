@@ -26,7 +26,7 @@ export default function edit(name: string, fields: Array<Field>, data: FilePathD
 
     formInputs += `<tr>
       <td><label for="${field.name}">${label}:</label></td>
-      <td><input type="${type}" id="${field.name}" name="${field.name}" placeholder="${label}" required></td>
+      <td><input type="${type}" id="${field.name}" name="${field.name}" value="<?php echo $${field.name} ?>" placeholder="${label}" required></td>
     </tr>\n\t\t`;
   });
 
@@ -36,7 +36,7 @@ export default function edit(name: string, fields: Array<Field>, data: FilePathD
   const fileNode = expandToNode`
     <?php
 
-    require __DIR__ . '/../vendor/autoload.php';
+    require '../../../vendor/autoload.php';
 
     use App\\${name};
 
@@ -66,12 +66,16 @@ export default function edit(name: string, fields: Array<Field>, data: FilePathD
     ${objParams}
     ?>
 
-    <form method="POST">
-      <table>
-        ${formInputs}
-      <table>
-      <button type="submit">Enviar</button>
-    </form>
+    <link href="../../assets/style.css" rel="stylesheet">
+
+    <div class="center">
+      <form method="POST">
+        <table>
+          ${formInputs}
+        </table>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
   `.appendNewLineIfNotEmpty();
 
   if (!fs.existsSync(dest)) {

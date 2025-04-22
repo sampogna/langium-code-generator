@@ -34,7 +34,7 @@ export default function create(name: string, fields: Array<Field>, data: FilePat
   const fileNode = expandToNode`
     <?php
 
-    require __DIR__ . '/../vendor/autoload.php';
+    require '../../../vendor/autoload.php';
 
     use App\\${name};
 
@@ -49,12 +49,16 @@ export default function create(name: string, fields: Array<Field>, data: FilePat
     }
     ?>
 
-    <form method="POST">
-      <table>
-        ${formInputs}
-      <table>
-      <button type="submit">Enviar</button>
-    </form>
+    <link href="../../assets/style.css" rel="stylesheet">
+
+    <div class="center">
+      <form method="POST">
+        <table>
+          ${formInputs}
+        </table>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
   `.appendNewLineIfNotEmpty();
 
   if (!fs.existsSync(dest)) {

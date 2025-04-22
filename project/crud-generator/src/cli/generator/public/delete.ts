@@ -10,7 +10,7 @@ export default function destroy(name: string, data: FilePathData): void {
   const fileNode = expandToNode`
     <?php
 
-    require __DIR__ . '/../../../vendor/autoload.php';
+    require '../../../vendor/autoload.php';
 
     use App\\${name};
 

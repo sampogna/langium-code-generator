@@ -1,0 +1,1 @@
+composer install && composer dump-autoload && sqlite3 database/database.sqlite < database/schema.sql && php -c php.ini -S localhost:8000 -t public
